@@ -32,7 +32,7 @@ function Analysis() {
 
         const res =
           await axios.get(
-            `http://localhost:5000/messages/${roomId}`
+            `https://cupidos-backend-uzi7.onrender.com/messages/${roomId}`
           );
 
         setMessages(res.data);
