@@ -26,7 +26,7 @@ function ChatRoom() {
 
   const location = useLocation();
 
-  /* USERNAME PERSISTENCE */
+  /* USERNAME */
 
   const savedUsername =
     localStorage.getItem("username");
@@ -45,7 +45,10 @@ function ChatRoom() {
 
   }, [username]);
 
-  const [message, setMessage] = useState("");
+  /* STATES */
+
+  const [message, setMessage] =
+    useState("");
 
   const [typingUser, setTypingUser] =
     useState("");
@@ -53,7 +56,14 @@ function ChatRoom() {
   const [messages, setMessages] =
     useState([]);
 
-  const messagesEndRef = useRef(null);
+  const [timeLeft, setTimeLeft] =
+    useState(300);
+
+  const [timerActive, setTimerActive] =
+    useState(true);
+
+  const messagesEndRef =
+    useRef(null);
 
   /* LOAD OLD MESSAGES */
 
@@ -148,13 +158,15 @@ function ChatRoom() {
 
     return () => {
 
-      socket.off("receive_message");
+      socket.off(
+        "receive_message"
+      );
 
     };
 
   }, [username]);
 
-  /* SHOW TYPING */
+  /* TYPING */
 
   useEffect(() => {
 
@@ -177,7 +189,9 @@ function ChatRoom() {
 
     return () => {
 
-      socket.off("show_typing");
+      socket.off(
+        "show_typing"
+      );
 
     };
 
@@ -193,7 +207,60 @@ function ChatRoom() {
 
   }, [messages]);
 
-  /* TIME */
+  /* TIMER */
+
+  useEffect(() => {
+
+    if(!timerActive) return;
+
+    if(timeLeft <= 0) {
+
+      navigate(
+        `/analysis/${roomId}`
+      );
+
+      return;
+
+    }
+
+    const interval =
+      setInterval(() => {
+
+        setTimeLeft((prev) =>
+          prev - 1
+        );
+
+      }, 1000);
+
+    return () =>
+      clearInterval(interval);
+
+  }, [
+    timeLeft,
+    timerActive,
+    navigate,
+    roomId
+  ]);
+
+  /* FORMAT TIMER */
+
+  const formatTime = (seconds) => {
+
+    const mins =
+      Math.floor(seconds / 60);
+
+    const secs =
+      seconds % 60;
+
+    return `${mins}:${
+      secs < 10
+        ? "0"
+        : ""
+    }${secs}`;
+
+  };
+
+  /* CURRENT TIME */
 
   const getCurrentTime = () => {
 
@@ -210,7 +277,8 @@ function ChatRoom() {
 
   const sendMessage = () => {
 
-    if(message.trim() === "") return;
+    if(message.trim() === "")
+      return;
 
     const randomReactions = [
       "♡",
@@ -271,12 +339,28 @@ function ChatRoom() {
 
         </div>
 
-        <button
-          className="leave-btn"
-          onClick={() =>navigate(`/analysis/${roomId}`) }
-        >
-          analyze ♡
-        </button>
+        <div className="chat-actions">
+
+          <div className="timer-box">
+
+            ⏳ {formatTime(timeLeft)}
+
+          </div>
+
+          <button
+            className="leave-btn"
+            onClick={() =>
+              navigate(
+                `/analysis/${roomId}`
+              )
+            }
+          >
+
+            analyze ♡
+
+          </button>
+
+        </div>
 
       </div>
 
@@ -320,7 +404,9 @@ function ChatRoom() {
               </div>
 
               <span className="time">
+
                 {msg.time}
+
               </span>
 
             </div>
@@ -328,7 +414,9 @@ function ChatRoom() {
             {msg.sender === "right" && (
 
               <div className="avatar">
+
                 ☁️
+
               </div>
 
             )}
@@ -361,7 +449,9 @@ function ChatRoom() {
           value={message}
           onChange={(e) => {
 
-            setMessage(e.target.value);
+            setMessage(
+              e.target.value
+            );
 
             socket.emit(
               "typing",
@@ -384,7 +474,9 @@ function ChatRoom() {
         />
 
         <button onClick={sendMessage}>
+
           send ♡
+
         </button>
 
       </div>
@@ -392,6 +484,7 @@ function ChatRoom() {
     </div>
 
   );
+
 }
 
 export default ChatRoom;
