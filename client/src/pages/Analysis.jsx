@@ -217,60 +217,107 @@ function Analysis() {
 
     if(score < 15) score = 15;
 
-    /* COZY ENERGY */
+    /* DYNAMIC ANALYSIS BOXES */
+
+    let energyTitle =
+      "☀ Cozy Energy";
 
     let cozyText =
       "emotionally warm and active";
 
-    if(playfulCount > 5) {
-
-      cozyText =
-        "high playful chemistry detected";
-
-    }
-
-    if(emotionalCount > 5) {
-
-      cozyText =
-        "deep emotional bonding detected";
-
-    }
-
-    /* DRY RISK */
-
     let dryRisk =
       "extremely low detected risk";
-
-    if(dryCount > 3) {
-
-      dryRisk =
-        "moderate emotional distance detected";
-
-    }
-
-    if(dryCount > 7) {
-
-      dryRisk =
-        "high dry texting patterns detected";
-
-    }
-
-    /* CHEMISTRY */
 
     let chemistry =
       "strong emotional interaction";
 
-    if(score > 90) {
+    /* 0 - 30 */
+
+    if(score <= 30) {
+
+      energyTitle =
+        "🌧 Emotional Distance";
+
+      cozyText =
+        "very low emotional warmth detected";
+
+      dryRisk =
+        "very high dry texting patterns";
 
       chemistry =
-        "extremely strong emotional compatibility";
+        "communication feels emotionally disconnected";
 
     }
 
-    if(score < 45) {
+    /* 31 - 50 */
+
+    else if(score <= 50) {
+
+      energyTitle =
+        "☁ Unstable Energy";
+
+      cozyText =
+        "mixed emotional consistency detected";
+
+      dryRisk =
+        "moderate emotional distance";
 
       chemistry =
-        "slightly disconnected communication style";
+        "connection exists but needs emotional effort";
+
+    }
+
+    /* 51 - 70 */
+
+    else if(score <= 70) {
+
+      energyTitle =
+        "✨ Growing Connection";
+
+      cozyText =
+        "comfortable emotional interaction";
+
+      dryRisk =
+        "low dry texting patterns";
+
+      chemistry =
+        "healthy communication patterns detected";
+
+    }
+
+    /* 71 - 90 */
+
+    else if(score <= 90) {
+
+      energyTitle =
+        "💖 Cozy Energy";
+
+      cozyText =
+        "emotionally warm and secure";
+
+      dryRisk =
+        "extremely low detected risk";
+
+      chemistry =
+        "strong emotional compatibility";
+
+    }
+
+    /* 91 - 100 */
+
+    else {
+
+      energyTitle =
+        "💞 Soulmate Energy";
+
+      cozyText =
+        "deep emotional attachment detected";
+
+      dryRisk =
+        "almost zero emotional distance";
+
+      chemistry =
+        "extremely rare emotional synchronization";
 
     }
 
@@ -441,6 +488,8 @@ function Analysis() {
 
       score,
 
+      energyTitle,
+
       cozyText,
 
       totalMessages:
@@ -515,7 +564,7 @@ function Analysis() {
         <div className="analysis-box yellow">
 
           <h3>
-            ☀ Cozy Energy
+            {analysis.energyTitle}
           </h3>
 
           <p>
