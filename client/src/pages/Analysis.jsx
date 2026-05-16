@@ -22,7 +22,7 @@ function Analysis() {
   const [analysis, setAnalysis] =
     useState(null);
 
-  /* LOAD MESSAGES */
+  /* FETCH MESSAGES */
 
   useEffect(() => {
 
@@ -51,7 +51,7 @@ function Analysis() {
 
   }, [roomId]);
 
-  /* ANALYSIS */
+  /* ANALYSIS ENGINE */
 
   useEffect(() => {
 
@@ -81,7 +81,15 @@ function Analysis() {
       "best",
       "mine",
       "kiss",
-      "hug"
+      "hug",
+      "always",
+      "forever",
+      "pretty",
+      "happy",
+      "safe",
+      "comfort",
+      "wife",
+      "husband"
     ];
 
     const dryWords = [
@@ -91,7 +99,8 @@ function Analysis() {
       "fine",
       "cool",
       "alr",
-      "bye"
+      "bye",
+      "huh"
     ];
 
     const toxicWords = [
@@ -100,7 +109,8 @@ function Analysis() {
       "annoying",
       "leave",
       "idiot",
-      "ugly"
+      "ugly",
+      "shut up"
     ];
 
     /* COUNTERS */
@@ -117,7 +127,9 @@ function Analysis() {
 
     let playfulCount = 0;
 
-    /* DETECT */
+    let emotionalCount = 0;
+
+    /* DETECT PATTERNS */
 
     texts.forEach((text) => {
 
@@ -173,9 +185,17 @@ function Analysis() {
 
       }
 
+      if(
+        /miss|care|love|safe|forever|always|proud|hug/.test(text)
+      ) {
+
+        emotionalCount++;
+
+      }
+
     });
 
-    /* SCORE */
+    /* LOVE SCORE */
 
     let score = 50;
 
@@ -187,85 +207,97 @@ function Analysis() {
 
     score += playfulCount * 2;
 
+    score += emotionalCount * 5;
+
     score -= dryCount * 5;
 
     score -= toxicCount * 12;
 
     if(score > 98) score = 98;
 
-    if(score < 12) score = 12;
+    if(score < 15) score = 15;
 
-    /* ENERGY */
+    /* COZY ENERGY */
 
-    let energy =
-      "Cozy Energy ☀";
+    let cozyText =
+      "emotionally warm and active";
 
     if(playfulCount > 5) {
 
-      energy =
-        "Golden Retriever Energy ✨";
+      cozyText =
+        "high playful chemistry detected";
 
     }
 
-    if(longMessages > 5) {
+    if(emotionalCount > 5) {
 
-      energy =
-        "Deep Emotional Bond 💖";
+      cozyText =
+        "deep emotional bonding detected";
 
     }
 
     /* DRY RISK */
 
     let dryRisk =
-      "Extremely Low";
+      "extremely low detected risk";
 
     if(dryCount > 3) {
 
-      dryRisk = "Medium";
+      dryRisk =
+        "moderate emotional distance detected";
 
     }
 
-    if(dryCount > 8) {
+    if(dryCount > 7) {
 
-      dryRisk = "High";
+      dryRisk =
+        "high dry texting patterns detected";
 
     }
 
     /* CHEMISTRY */
 
     let chemistry =
-      "emotionally warm and connected";
+      "strong emotional interaction";
 
-    if(score > 85) {
+    if(score > 90) {
 
       chemistry =
-        "insanely strong chemistry detected";
+        "extremely strong emotional compatibility";
 
     }
 
-    if(score < 40) {
+    if(score < 45) {
 
       chemistry =
-        "connection feels emotionally distant";
+        "slightly disconnected communication style";
 
     }
 
-    /* AI OBSERVATIONS */
+    /* OBSERVATIONS */
 
     const observations = [];
 
     if(playfulCount > 4) {
 
       observations.push(
-        "💖 You both naturally mirror each other's humor."
+        "💖 You both naturally mirror each other's humor and energy."
       );
 
     }
 
-    if(longMessages > 3) {
+    if(longMessages > 4) {
 
       observations.push(
-        "☁ Deep emotional conversations are happening frequently."
+        "☁ Deep conversations are happening frequently between both partners."
+      );
+
+    }
+
+    if(emotionalCount > 5) {
+
+      observations.push(
+        "✨ Strong emotional reassurance patterns were detected."
       );
 
     }
@@ -273,7 +305,7 @@ function Analysis() {
     if(emojiCount > 5) {
 
       observations.push(
-        "✨ Emotional expression is highly visible in chats."
+        "💌 Emotional expression is highly visible through texting style."
       );
 
     }
@@ -281,7 +313,7 @@ function Analysis() {
     if(dryCount > 5) {
 
       observations.push(
-        "🌧 Some dry texting patterns were detected."
+        "🌧 Some emotionally distant texting patterns appeared occasionally."
       );
 
     }
@@ -289,7 +321,15 @@ function Analysis() {
     if(toxicCount > 0) {
 
       observations.push(
-        "⚠ Negative language occasionally appeared in conversation."
+        "⚠ Negative wording appeared in certain moments of the conversation."
+      );
+
+    }
+
+    if(messages.length > 20) {
+
+      observations.push(
+        "💞 Consistent communication effort exists from both sides."
       );
 
     }
@@ -297,64 +337,128 @@ function Analysis() {
     if(observations.length === 0) {
 
       observations.push(
-        "💌 Your conversations feel balanced and emotionally comfortable."
+        "💖 Your conversations feel emotionally balanced and comforting."
       );
 
     }
 
-    /* ADVICE */
+    /* ADVICE SYSTEM */
 
-    let advice =
-      "Keep communicating openly and consistently 💖";
+    const advicePool = [];
 
     if(score > 85) {
 
-      advice =
-        "Your emotional compatibility is amazing — keep nurturing it ✨";
+      advicePool.push(
+        "Your emotional compatibility is genuinely strong — keep nurturing this safe space ✨"
+      );
+
+      advicePool.push(
+        "You both naturally create emotional comfort for each other 💖"
+      );
+
+      advicePool.push(
+        "The emotional consistency between you two is rare and beautiful ☁"
+      );
 
     }
 
-    if(dryCount > 5) {
+    if(playfulCount > 5) {
 
-      advice =
-        "Try adding more curiosity and emotional warmth to conversations ☁";
+      advicePool.push(
+        "Humor is one of your strongest emotional connectors 😭✨"
+      );
+
+      advicePool.push(
+        "Keep maintaining this playful energy — it strengthens attachment 💌"
+      );
 
     }
 
     if(longMessages < 2) {
 
-      advice =
-        "Spend more time discussing feelings and memories together 💌";
+      advicePool.push(
+        "Try discussing deeper emotions and personal memories more often 💞"
+      );
+
+      advicePool.push(
+        "Emotional vulnerability could strengthen this connection further ✨"
+      );
+
+    }
+
+    if(dryCount > 5) {
+
+      advicePool.push(
+        "Small affectionate replies can significantly improve emotional warmth 💖"
+      );
+
+      advicePool.push(
+        "Try showing more curiosity and engagement during conversations ☁"
+      );
 
     }
 
     if(toxicCount > 0) {
 
-      advice =
-        "Be mindful of harsh wording during emotional moments 🌧";
+      advicePool.push(
+        "Soft communication during emotional moments will improve long-term trust 🌧"
+      );
+
+      advicePool.push(
+        "Be mindful of emotionally harsh wording during disagreements 💌"
+      );
 
     }
+
+    if(messages.length < 10) {
+
+      advicePool.push(
+        "Spending more consistent time together could deepen emotional chemistry 💖"
+      );
+
+    }
+
+    if(advicePool.length === 0) {
+
+      advicePool.push(
+        "Your conversations currently feel emotionally healthy and balanced ✨"
+      );
+
+    }
+
+    const randomAdvice =
+
+      advicePool[
+        Math.floor(
+          Math.random() *
+          advicePool.length
+        )
+      ];
+
+    /* FINAL ANALYSIS */
 
     setAnalysis({
 
       score,
+
+      cozyText,
 
       totalMessages:
         messages.length,
 
       dryRisk,
 
-      energy,
-
       chemistry,
 
       observations,
 
-      advice
+      randomAdvice
 
     });
 
   }, [messages]);
+
+  /* LOADING */
 
   if(!analysis) {
 
@@ -411,11 +515,11 @@ function Analysis() {
         <div className="analysis-box yellow">
 
           <h3>
-            {analysis.energy}
+            ☀ Cozy Energy
           </h3>
 
           <p>
-            emotional energy detected
+            {analysis.cozyText}
           </p>
 
         </div>
@@ -427,7 +531,8 @@ function Analysis() {
           </h3>
 
           <p>
-            {analysis.totalMessages} messages exchanged
+            {analysis.totalMessages}
+            total messages exchanged
           </p>
 
         </div>
@@ -458,7 +563,7 @@ function Analysis() {
 
       </div>
 
-      {/* AI NOTES */}
+      {/* OBSERVATIONS */}
 
       <div className="ai-notes">
 
@@ -494,10 +599,14 @@ function Analysis() {
         </h2>
 
         <div className="note">
-          {analysis.advice}
+
+          {analysis.randomAdvice}
+
         </div>
 
       </div>
+
+      {/* BUTTON */}
 
       <button
         className="primary-btn"
