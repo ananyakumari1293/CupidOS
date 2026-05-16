@@ -1,8 +1,26 @@
-import { useNavigate } from "react-router-dom";
+import {
+  useState
+} from "react";
+
+import {
+  useNavigate
+} from "react-router-dom";
 
 function CreateRoom() {
 
   const navigate = useNavigate();
+
+  /* USERNAME */
+
+  const [username, setUsername] =
+    useState("");
+
+  /* SESSION TYPE */
+
+  const [sessionType, setSessionType] =
+    useState("Couple");
+
+  /* ROOM ID */
 
   const roomId =
     Math.random()
@@ -10,22 +28,28 @@ function CreateRoom() {
       .substring(2, 8)
       .toUpperCase();
 
+  /* INVITE LINK */
+
   const inviteLink =
-    `http://localhost:5173/room/${roomId}`;
+    `https://cupid-os-iota.vercel.app/join/${roomId}`;
+
+  /* COPY LINK */
 
   const copyInvite = async () => {
 
-    try{
+    try {
 
       await navigator.clipboard.writeText(
         inviteLink
       );
 
-      alert("invite link copied ✨");
+      alert(
+        "invite link copied ✨"
+      );
 
     }
 
-    catch(err){
+    catch(err) {
 
       console.log(err);
 
@@ -33,9 +57,43 @@ function CreateRoom() {
 
   };
 
+  /* ENTER ROOM */
+
+  const enterRoom = () => {
+
+    if(username.trim() === "") {
+
+      alert(
+        "enter your name 💖"
+      );
+
+      return;
+
+    }
+
+    navigate(
+
+      `/room/${roomId}`,
+
+      {
+        state: {
+
+          username,
+
+          sessionType
+
+        }
+      }
+
+    );
+
+  };
+
   return (
 
     <div className="room-card">
+
+      {/* TOP */}
 
       <div className="small-tag">
         ♡ new session
@@ -49,24 +107,51 @@ function CreateRoom() {
         share the code with your partner!
       </p>
 
+      {/* USERNAME */}
+
       <div className="input-group">
 
-        <label>YOUR NAME</label>
+        <label>
+          YOUR NAME
+        </label>
 
         <input
           type="text"
-          placeholder="Alex"
+          placeholder="Ananya"
+          value={username}
+          onChange={(e) =>
+            setUsername(
+              e.target.value
+            )
+          }
         />
 
       </div>
 
+      {/* SESSION TYPE */}
+
       <div className="input-group">
 
-        <label>SESSION TYPE</label>
+        <label>
+          SESSION TYPE
+        </label>
 
         <div className="session-grid">
 
-          <div className="session-box active">
+          {/* COUPLE */}
+
+          <div
+
+            className={
+              sessionType === "Couple"
+              ? "session-box active"
+              : "session-box"
+            }
+
+            onClick={() =>
+              setSessionType("Couple")
+            }
+          >
 
             <h3>💖</h3>
 
@@ -76,7 +161,20 @@ function CreateRoom() {
 
           </div>
 
-          <div className="session-box">
+          {/* FRIENDS */}
+
+          <div
+
+            className={
+              sessionType === "Friends"
+              ? "session-box active"
+              : "session-box"
+            }
+
+            onClick={() =>
+              setSessionType("Friends")
+            }
+          >
 
             <h3>🤝</h3>
 
@@ -90,11 +188,17 @@ function CreateRoom() {
 
       </div>
 
+      {/* ROOM CODE */}
+
       <div className="code-box">
 
-        <p>ROOM CODE</p>
+        <p>
+          ROOM CODE
+        </p>
 
-        <h1>{roomId}</h1>
+        <h1>
+          {roomId}
+        </h1>
 
         <span>
           share with your partner ♡
@@ -102,30 +206,41 @@ function CreateRoom() {
 
       </div>
 
+      {/* BUTTONS */}
+
       <button
         className="primary-btn"
-        onClick={() => navigate(`/room/${roomId}`)}
+        onClick={enterRoom}
       >
+
         enter room ♡
+
       </button>
 
       <button
         className="secondary-btn"
         onClick={copyInvite}
       >
+
         copy invite link!
+
       </button>
+
+      {/* BACK */}
 
       <div
         className="back-btn"
         onClick={() => navigate("/")}
       >
+
         ← back
+
       </div>
 
     </div>
 
   );
+
 }
 
 export default CreateRoom;

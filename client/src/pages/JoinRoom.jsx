@@ -1,20 +1,38 @@
 import {
-  useState
+  useState,
+  useEffect
 } from "react";
 
 import {
-  useNavigate
+  useNavigate,
+  useParams
 } from "react-router-dom";
 
 function JoinRoom() {
 
   const navigate = useNavigate();
 
+  const { roomId } = useParams();
+
   const [username, setUsername] =
     useState("");
 
   const [roomCode, setRoomCode] =
     useState("");
+
+  /* AUTO FILL ROOM CODE */
+
+  useEffect(() => {
+
+    if(roomId) {
+
+      setRoomCode(roomId);
+
+    }
+
+  }, [roomId]);
+
+  /* JOIN ROOM */
 
   const joinRoom = () => {
 
