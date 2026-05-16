@@ -51,157 +51,319 @@ function Analysis() {
 
   }, [roomId]);
 
-  /* ANALYZE */
+  /* ANALYSIS */
 
   useEffect(() => {
 
     if(messages.length === 0) return;
 
-    const totalMessages =
-      messages.length;
+    const texts =
+      messages.map((msg) =>
+        msg.text.toLowerCase()
+      );
 
-    const emojiCount =
-      messages.filter((msg) =>
+    /* WORD LISTS */
 
-        /❤️|💖|😭|✨|🥹|😍|😘|💕|💌/.test(
-          msg.text
-        )
+    const positiveWords = [
+      "love",
+      "miss",
+      "cute",
+      "baby",
+      "sweet",
+      "beautiful",
+      "hehe",
+      "haha",
+      "lol",
+      "goodnight",
+      "good morning",
+      "proud",
+      "care",
+      "best",
+      "mine",
+      "kiss",
+      "hug"
+    ];
 
-      ).length;
+    const dryWords = [
+      "k",
+      "ok",
+      "hmm",
+      "fine",
+      "cool",
+      "alr",
+      "bye"
+    ];
 
-    const shortReplies =
-      messages.filter((msg) =>
+    const toxicWords = [
+      "hate",
+      "stupid",
+      "annoying",
+      "leave",
+      "idiot",
+      "ugly"
+    ];
 
-        msg.text.length <= 3
+    /* COUNTERS */
 
-      ).length;
+    let positiveCount = 0;
 
-    const longMessages =
-      messages.filter((msg) =>
+    let dryCount = 0;
 
-        msg.text.length > 25
+    let toxicCount = 0;
 
-      ).length;
+    let emojiCount = 0;
 
-    const playfulMessages =
-      messages.filter((msg) =>
+    let longMessages = 0;
 
-        /haha|lol|lmao|😭|😂|hehe/i.test(
-          msg.text
-        )
+    let playfulCount = 0;
 
-      ).length;
+    /* DETECT */
 
-    /* SCORES */
+    texts.forEach((text) => {
 
-    let loveScore = 60;
+      positiveWords.forEach((word) => {
 
-    loveScore +=
-      emojiCount * 2;
+        if(text.includes(word)) {
 
-    loveScore +=
-      playfulMessages * 3;
+          positiveCount++;
 
-    loveScore +=
-      longMessages * 2;
+        }
 
-    loveScore -=
-      shortReplies * 2;
+      });
 
-    if(loveScore > 98)
-      loveScore = 98;
+      dryWords.forEach((word) => {
 
-    if(loveScore < 40)
-      loveScore = 40;
+        if(text === word) {
 
-    /* DRY RISK */
+          dryCount++;
 
-    let dryRisk =
-      "extremely low";
+        }
 
-    if(shortReplies > 8)
-      dryRisk = "medium";
+      });
 
-    if(shortReplies > 15)
-      dryRisk = "high";
+      toxicWords.forEach((word) => {
+
+        if(text.includes(word)) {
+
+          toxicCount++;
+
+        }
+
+      });
+
+      if(
+        /💖|❤️|😭|✨|🥹|😍|😘|💕|💌|😚|😩/.test(text)
+      ) {
+
+        emojiCount++;
+
+      }
+
+      if(text.length > 35) {
+
+        longMessages++;
+
+      }
+
+      if(
+        /haha|lol|hehe|lmao|😭|😂/.test(text)
+      ) {
+
+        playfulCount++;
+
+      }
+
+    });
+
+    /* SCORE */
+
+    let score = 50;
+
+    score += positiveCount * 4;
+
+    score += emojiCount * 2;
+
+    score += longMessages * 3;
+
+    score += playfulCount * 2;
+
+    score -= dryCount * 5;
+
+    score -= toxicCount * 12;
+
+    if(score > 98) score = 98;
+
+    if(score < 12) score = 12;
 
     /* ENERGY */
 
     let energy =
-      "Cozy Energy";
+      "Cozy Energy ☀";
 
-    if(playfulMessages > 5)
+    if(playfulCount > 5) {
+
       energy =
-        "Golden Retriever Energy";
+        "Golden Retriever Energy ✨";
 
-    /* OBSERVATIONS */
+    }
+
+    if(longMessages > 5) {
+
+      energy =
+        "Deep Emotional Bond 💖";
+
+    }
+
+    /* DRY RISK */
+
+    let dryRisk =
+      "Extremely Low";
+
+    if(dryCount > 3) {
+
+      dryRisk = "Medium";
+
+    }
+
+    if(dryCount > 8) {
+
+      dryRisk = "High";
+
+    }
+
+    /* CHEMISTRY */
+
+    let chemistry =
+      "emotionally warm and connected";
+
+    if(score > 85) {
+
+      chemistry =
+        "insanely strong chemistry detected";
+
+    }
+
+    if(score < 40) {
+
+      chemistry =
+        "connection feels emotionally distant";
+
+    }
+
+    /* AI OBSERVATIONS */
 
     const observations = [];
 
-    if(playfulMessages > 4){
+    if(playfulCount > 4) {
 
       observations.push(
-        "💖 You both mirror each other's humor a lot."
+        "💖 You both naturally mirror each other's humor."
       );
 
     }
 
-    if(emojiCount > 5){
+    if(longMessages > 3) {
 
       observations.push(
-        "✨ Emotional expression is very visible in conversations."
+        "☁ Deep emotional conversations are happening frequently."
       );
 
     }
 
-    if(longMessages > 3){
+    if(emojiCount > 5) {
 
       observations.push(
-        "☁ One or both partners enjoy deep conversations."
+        "✨ Emotional expression is highly visible in chats."
       );
 
     }
 
-    if(shortReplies > 8){
+    if(dryCount > 5) {
 
       observations.push(
-        "🌧 Dry texting moments were detected sometimes."
+        "🌧 Some dry texting patterns were detected."
       );
 
     }
 
-    if(observations.length === 0){
+    if(toxicCount > 0) {
 
       observations.push(
-        "💌 Your conversations feel balanced and comfortable."
+        "⚠ Negative language occasionally appeared in conversation."
       );
+
+    }
+
+    if(observations.length === 0) {
+
+      observations.push(
+        "💌 Your conversations feel balanced and emotionally comfortable."
+      );
+
+    }
+
+    /* ADVICE */
+
+    let advice =
+      "Keep communicating openly and consistently 💖";
+
+    if(score > 85) {
+
+      advice =
+        "Your emotional compatibility is amazing — keep nurturing it ✨";
+
+    }
+
+    if(dryCount > 5) {
+
+      advice =
+        "Try adding more curiosity and emotional warmth to conversations ☁";
+
+    }
+
+    if(longMessages < 2) {
+
+      advice =
+        "Spend more time discussing feelings and memories together 💌";
+
+    }
+
+    if(toxicCount > 0) {
+
+      advice =
+        "Be mindful of harsh wording during emotional moments 🌧";
 
     }
 
     setAnalysis({
 
-      loveScore,
+      score,
+
+      totalMessages:
+        messages.length,
 
       dryRisk,
 
       energy,
 
-      totalMessages,
+      chemistry,
 
-      observations
+      observations,
+
+      advice
 
     });
 
   }, [messages]);
 
-  if(!analysis){
+  if(!analysis) {
 
     return (
 
       <div className="analysis-card">
 
         <h1>
-          analyzing chemistry... ✨
+          analyzing your relationship... ✨
         </h1>
 
       </div>
@@ -233,7 +395,7 @@ function Analysis() {
       <div className="love-score">
 
         <h2>
-          {analysis.loveScore}%
+          {analysis.score}%
         </h2>
 
         <span>
@@ -249,11 +411,11 @@ function Analysis() {
         <div className="analysis-box yellow">
 
           <h3>
-            ☀ {analysis.energy}
+            {analysis.energy}
           </h3>
 
           <p>
-            emotionally warm and active
+            emotional energy detected
           </p>
 
         </div>
@@ -265,8 +427,7 @@ function Analysis() {
           </h3>
 
           <p>
-            {analysis.totalMessages}
-            total messages exchanged
+            {analysis.totalMessages} messages exchanged
           </p>
 
         </div>
@@ -279,7 +440,6 @@ function Analysis() {
 
           <p>
             {analysis.dryRisk}
-            detected risk
           </p>
 
         </div>
@@ -291,14 +451,14 @@ function Analysis() {
           </h3>
 
           <p>
-            strong emotional interaction
+            {analysis.chemistry}
           </p>
 
         </div>
 
       </div>
 
-      {/* NOTES */}
+      {/* AI NOTES */}
 
       <div className="ai-notes">
 
@@ -306,20 +466,36 @@ function Analysis() {
           AI observations ✨
         </h2>
 
-        {analysis.observations.map(
-          (note, index) => (
+        {
+          analysis.observations.map(
+            (note, index) => (
 
-            <div
-              key={index}
-              className="note"
-            >
+              <div
+                key={index}
+                className="note"
+              >
 
-              {note}
+                {note}
 
-            </div>
+              </div>
 
+            )
           )
-        )}
+        }
+
+      </div>
+
+      {/* ADVICE */}
+
+      <div className="ai-notes">
+
+        <h2>
+          relationship advice 💖
+        </h2>
+
+        <div className="note">
+          {analysis.advice}
+        </div>
 
       </div>
 
