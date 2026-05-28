@@ -1,227 +1,160 @@
-💖 CupidOS
-AI-powered relationship analysis platform with realtime private chat, emotional insights, and dynamic compatibility scoring.
+# 💖 CupidOS
+
+### An AI-powered relationship analysis experience built around realtime conversations, emotional insights, and dynamic compatibility scoring.
+
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=E8A0BF&center=true&vCenter=true&width=900&lines=Connection+Established...;Analyzing+Emotional+Patterns;Realtime+Chat+%2B+Relationship+Insights;Built+for+Meaningful+Conversations."/>
+</p>
+
+---
+
+## 🌸 ABOUT THE PROJECT
+
+CupidOS is a realtime AI-inspired relationship analysis platform where two people can privately connect, chat live, and receive emotional compatibility insights based on their conversations.
+
+More than just a messaging platform, CupidOS transforms conversations into dynamic emotional observations through realtime interaction analysis and conversational pattern detection.
+
+The experience blends:
+
+* realtime communication
+* emotional intelligence
+* conversational analytics
+* immersive UI/UX
+* compatibility scoring
+
+into one interactive platform.
+
+---
+
+# 💬 HOW IT WORKS
+
+### STEP 1
+
+Create a private room and generate a unique invite link.
+
+### STEP 2
+
+Invite your partner or friend to join the session.
+
+### STEP 3
+
+Chat together in realtime while the system observes conversational patterns.
+
+### STEP 4
+
+CupidOS dynamically analyzes:
+
+* emotional warmth
+* texting consistency
+* playful chemistry
+* emotional reassurance
+* conversational energy
+
+and generates personalized relationship insights.
+
+---
+
+# ✨ FEATURES
+
+* Realtime private chat system
+* Live typing indicators
+* Dynamic compatibility scoring
+* AI-inspired emotional analysis
+* Personalized relationship observations
+* Smart conversation insights
+* Invite-based room system
+* Responsive immersive interface
+* Live session countdown timer
+
+---
+
+# 📸 PREVIEW
+
+## 💖 Landing Interface
+
+<img width="945" height="490" alt="{BA6F0BD6-8315-49AE-BB34-9B4120656487}" src="https://github.com/user-attachments/assets/cd3c2c29-ce12-4157-ade7-48d238dbfe54" />
+<img width="918" height="477" alt="{09B7F47D-C832-48BB-8F8F-CB517A390333}" src="https://github.com/user-attachments/assets/54feb7e7-c436-4b01-ad84-9655afff12c4" />
 
 
-✨ What is CupidOS?
-CupidOS is a realtime AI-inspired relationship analysis web application where two people can:
-create a private chat room
-invite their partner/friend
-chat in realtime
-receive dynamic emotional analysis
-view compatibility insights
-detect texting patterns
-generate relationship observations and advice
-The platform combines:
-realtime communication
-sentiment analysis
-conversational pattern detection
-emotional scoring systems
-immersive UI/UX
-into one experience.
+---
 
-🌐 Live Demo
-Frontend
+## 💬 Realtime Chat Experience
+
+<img width="893" height="463" alt="{17039C6C-9019-4175-BFF9-6C5F5090AF75}" src="https://github.com/user-attachments/assets/a13144b3-0f2a-4a61-b8a7-87ebfd4c528f" />
+
+
+
+---
+
+## 📊 Compatibility Analysis
+<img width="258" height="182" alt="{6B2D487D-72DD-4019-AAC3-EE80B5A06684}" src="https://github.com/user-attachments/assets/9f0ed441-3439-419b-926e-5509d1559fcb" />
+
+
+---
+
+## 🧠 Emotional Insight System
+
+<img width="262" height="168" alt="{5EFAE66C-330B-4384-9F1D-750AC9199CF2}" src="https://github.com/user-attachments/assets/e0777b0b-c9dd-441e-af1a-a566c7bba403" />
+
+
+---
+
+## 🌸 Relationship Observations
+
+<img width="202" height="213" alt="{D2063C5D-B74F-43C3-963E-4E57A99CA463}" src="https://github.com/user-attachments/assets/e7e53d62-39a9-4ea3-afca-b8334f871168" />
+
+---
+
+# ⚙️ TECH STACK
+
+### Frontend
+
+* React.js
+* React Router
+* Axios
+* Socket.IO Client
+
+### Backend
+
+* Node.js
+* Express.js
+* Socket.IO
+* MongoDB Atlas
+
+### Deployment
+
+* Vercel
+* Render
+
+---
+
+# 🌐 LIVE EXPERIENCE
+
+### Frontend
+
 https://cupid-os-iota.vercel.app
-Backend API
+
+### Backend API
+
 https://cupidos-backend-uzi7.onrender.com
 
-🚀 Features
-💬 Realtime Private Chat
-Socket.IO powered communication
-instant messaging
-typing indicators
-private room system
-persistent chat history
+---
 
-🔗 Invite Link System
-Users can:
-create rooms
-generate unique room IDs
-share invite links
-join sessions instantly
+# 🔮 FUTURE ROADMAP
 
-🧠 Dynamic AI-Inspired Relationship Analysis
-CupidOS analyzes conversations in realtime using a custom sentiment-analysis engine.
-The system evaluates:
-emotional warmth
-texting consistency
-dry texting patterns
-playful chemistry
-emotional reassurance
-emoji usage
-conversation depth
-negative wording
+* AI-generated compatibility summaries
+* Emotion classification models
+* Voice emotion analysis
+* Mood timeline visualization
+* Couple streak systems
+* Advanced NLP integration
 
-📊 Dynamic Love Compatibility Score
-Each room receives a unique compatibility score based on:
-affection level
-emotional engagement
-conversation quality
-communication consistency
-positivity patterns
-Example:
-low emotional interaction → lower score
-playful and affectionate chats → higher score
-emotionally expressive conversations → strongest compatibility
+---
 
-💖 Smart Relationship Observations
-CupidOS generates dynamic observations such as:
-“Strong emotional reassurance patterns detected.”
-“You both naturally mirror each other's humor.”
-“Some emotionally distant texting patterns appeared occasionally.”
-Every room receives different outputs depending on conversation style.
+# 📬 FEEDBACK
 
-🫶 Personalized Relationship Advice
-The app dynamically generates different relationship suggestions for different users.
-Examples:
-improve emotional openness
-maintain playful chemistry
-reduce emotionally distant replies
-strengthen communication consistency
+If you explore CupidOS, feel free to share feedback, ideas, or suggestions for future emotional intelligence features.
 
-⏳ 5-Minute Live Session Timer
-Every session includes:
-live countdown timer
-automatic relationship analysis after session ends
-manual analysis option anytime
+---
 
-🧠 How the Analysis Engine Works
-CupidOS currently uses a custom rule-based conversational sentiment analysis engine.
-The engine evaluates:
-positive emotional words
-affectionate patterns
-message length
-emoji frequency
-humor/playfulness
-dry texting indicators
-emotional reassurance
-toxic wording
-These conversational signals are converted into:
-compatibility scores
-chemistry detection
-emotional energy classification
-relationship advice
-
-🔮 Future AI/ML Integration
-Future versions of CupidOS will integrate:
-HuggingFace Transformers
-NLP emotion classification
-attachment-style prediction
-transformer-based sentiment analysis
-OpenAI/Gemini emotional conversation models
-voice emotion analysis
-AI-generated compatibility summaries
-
-🛠 Tech Stack
-Frontend
-React.js
-React Router
-Axios
-CSS3
-Socket.IO Client
-Backend
-Node.js
-Express.js
-Socket.IO
-MongoDB Atlas
-Mongoose
-Deployment
-Vercel (frontend)
-Render (backend)
-
-🧩 System Architecture
-Vercel Frontend
-        ↓
-Socket.IO + REST API
-        ↓
-Render Backend Server
-        ↓
-MongoDB Atlas Database
-
-📸 Main User Flow
-1. Create Room
-User enters:
-name
-session type
-CupidOS generates:
-room code
-invite link
-
-2. Share Invite
-Partner opens:
-/join/:roomId
-and joins using their own name.
-
-3. Realtime Chat
-Users:
-exchange messages
-see typing indicators
-communicate live
-
-4. Relationship Analysis
-CupidOS generates:
-compatibility percentage
-emotional energy
-chemistry insights
-AI observations
-personalized relationship advice
-📌 Example Analysis Categories
-Score Range	Relationship State
-0 - 30	Emotional Distance
-31 - 50	Unstable Energy
-51 - 70	Growing Connection
-71 - 90	Cozy Energy
-91 - 100	Soulmate Energy
-
-⚡ Installation
-Clone Repository
-git clone https://github.com/ananyakumari1293/CupidOS.git
-Install Frontend
-cd client
-npm install
-npm run dev
-Install Backend
-cd server
-npm install
-npm run dev
-
-🔐 Environment Variables
-Create .env inside server:
-MONGO_URI=your_mongodb_connection_string
-PORT=5000
-
-🎯 Why CupidOS?
-Most chat apps only focus on communication.
-CupidOS focuses on:
-emotional intelligence
-conversational behavior
-relationship dynamics
-realtime emotional feedback
-The goal is to transform conversations into meaningful emotional insights.
-
-👩‍💻 Developer
-Built with 💖 by:
-Ananya Prakash
-GitHub:
-https://github.com/ananyakumari1293
-
-⭐ Future Roadmap
-voice message analysis
-AI-generated summaries
-mood timeline graphs
-attachment style prediction
-Spotify mood integration
-read receipts
-couple streak system
-emotional trend visualization
-dark/light themes
-AI-generated compatibility reports
-
-💌 Final Note
-CupidOS is not just a chat application.
-It is an experiment in combining:
-realtime communication
-emotional intelligence
-conversational AI
-relationship analytics
-into one immersive experience.
+### ✨ “Every conversation leaves behind an emotional pattern.”
