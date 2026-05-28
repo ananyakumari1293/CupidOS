@@ -2,8 +2,9 @@
 
 ### An AI-powered relationship analysis experience built around realtime conversations, emotional insights, and dynamic compatibility scoring.
 
+
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=E8A0BF&center=true&vCenter=true&width=900&lines=Connection+Established...;Analyzing+Emotional+Patterns;Realtime+Chat+%2B+Relationship+Insights;Built+for+Meaningful+Conversations."/>
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=F8C8DC&center=true&vCenter=true&width=900&lines=Connection+Established...;Analyzing+Emotional+Patterns;Realtime+Chat+%2B+Relationship+Insights;Built+for+Meaningful+Conversations."/>
 </p>
 
 ---
